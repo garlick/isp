@@ -56,7 +56,7 @@ cp man/*.3 $RPM_BUILD_ROOT/%{_mandir}/man3
 
 %files
 %defattr(-,root,root,-)
-%doc ChangeLog doc/report.pdf man/manual.pdf DISCLAIMER COPYING
+%doc ChangeLog doc/report.pdf DISCLAIMER COPYING
 %{_bindir}/*
 %{_libdir}/*
 %dir %{_includedir}/isp
