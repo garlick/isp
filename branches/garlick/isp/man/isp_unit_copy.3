@@ -1,0 +1,49 @@
+.\" Copyright (C) 2005 The Regents of the University of California.
+.\" Produced at Lawrence Livermore National Laboratory (cf, DISCLAIMER).
+.\" Written by Jim Garlick <garlick@llnl.gov>.
+.\"
+.\" This file is part of ISP, a toolkit for constructing pipeline applications.
+.\" For details, see <http://isp.sourceforge.net>.
+.\"
+.\" ISP is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2 of the License, or (at your option)
+.\" any later version.
+.\"
+.\" ISP is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+.\" FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+.\" details.
+.\"
+.\" You should have received a copy of the GNU General Public License along
+.\" with ISP; if not, write to the Free Software Foundation, Inc.,
+.\" 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+.TH ISP_UNIT_COPY 3  2005-03-23 "" "Industrial Strength Pipes"
+.SH NAME
+isp_unit_create, isp_unit_destroy, isp_unit_copy \- create/destroy/copy a unit
+.SH SYNOPSIS
+.nf
+.B #include <isp/isp.h>
+.sp
+.BI "int isp_unit_create(isp_unit_t *" up ");"
+.sp
+.BI "int isp_unit_destroy(isp_unit_t " u ");"
+.sp
+.BI "int isp_unit_copy(isp_unit_t *" up ", isp_unit_t " u ");"
+.fi
+.SH DESCRIPTION
+\fBisp_unit_create()\fR creates a new unit in \fIup\fR.
+The new unit does not contain any files or metadata.
+.PP
+\fBisp_unit_destroy()\fR destroys a unit \fIu\fR.  Memory associated with
+any files or metadata is freed, but referenced files are not removed.
+.PP
+\fBisp_unit_copy()\fR creates a copy of unit \fIu\fR in \fIup\fR, with
+all of its files and metadata.  
+.SH "RETURN VALUE"
+These functions return ISP_ESUCCESS (0) 
+on success.  A nonzero error code which can be decoded with 
+\fBisp_errstr()\fR is returned
+on failure.
+.SH "SEE ALSO"
+.BR isp_errstr (3)
