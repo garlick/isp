@@ -1,3 +1,9 @@
+2006-02-16 Jim Garlick <garlick@llnl.gov>
+
+ * isp.spec: use macros instead of hard coded directories.
+
+ * : tag isp-0-10
+
 2006-01-23 Jim Garlick <garlick@llnl.gov>
 
  * */*: updated headers with UC release number.
