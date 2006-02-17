@@ -1,0 +1,41 @@
+.\" Copyright (C) 2005 The Regents of the University of California.
+.\" Produced at Lawrence Livermore National Laboratory (cf, DISCLAIMER).
+.\" Written by Jim Garlick <garlick@llnl.gov>.
+.\"
+.\" This file is part of ISP, a toolkit for constructing pipeline applications.
+.\" For details, see <http://isp.sourceforge.net>.
+.\"
+.\" ISP is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2 of the License, or (at your option)
+.\" any later version.
+.\"
+.\" ISP is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+.\" FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+.\" details.
+.\"
+.\" You should have received a copy of the GNU General Public License along
+.\" with ISP; if not, write to the Free Software Foundation, Inc.,
+.\" 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+.TH ISPDELAY 1  2005-12-08 "" "Industrial Strength Pipes"
+.SH NAME
+ispdelay \- delay each unit by fixed time interval
+.SH SYNOPSIS
+.BI "ispdelay -d seconds"
+.SH DESCRIPTION
+\fBispdelay\fR copies units on standard input to standard output,
+delaying a fixed time interval on each unit.
+.SH OPTIONS
+.TP
+\fB-d\fR, \fB--delay\fR
+Specify the time interval in seconds.  Default: 0 (no delay).
+.SH "SEE ALSO"
+.BR ispbarrier (1)
+.BR ispcat (1)
+.BR ispexec (1)
+.BR isprename (1)
+.BR isprun (1)
+.BR ispstats (1)
+.BR ispunit (1)
+.BR ispunitsplit (1)
