@@ -1,0 +1,37 @@
+.\" Copyright (C) 2005 The Regents of the University of California.
+.\" Produced at Lawrence Livermore National Laboratory (cf, DISCLAIMER).
+.\" Written by Jim Garlick <garlick@llnl.gov>.
+.\"
+.\" This file is part of ISP, a toolkit for constructing pipeline applications.
+.\" For details, see <http://isp.sourceforge.net>.
+.\"
+.\" ISP is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2 of the License, or (at your option)
+.\" any later version.
+.\"
+.\" ISP is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+.\" FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+.\" details.
+.\"
+.\" You should have received a copy of the GNU General Public License along
+.\" with ISP; if not, write to the Free Software Foundation, Inc.,
+.\" 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+.TH ISP_ERR 3  2005-12-06 "" "Industrial Strength Pipes"
+.SH NAME
+isp_err, isp_errx \- print error message on standard error
+.SH SYNOPSIS
+.B #include <isp/isp.h>
+.sp
+.BI "void isp_err(const char * " fmt ", ... );"
+.sp
+.BI "void isp_errx(int " exitval ", const char * " fmt ", ... );"
+.SH DESCRIPTION
+\fBisp_err()\fR prints the filter's program name as registered via 
+\fBisp_init()\fR, its position in the pipline in square brackets, and a colon
+followed by a formatted message in \fBprintf()\fR style on standard error.
+.PP
+\fBisp_errx()\fR also calls \fBexit()\fR with \fIexitval\fR.
+.SH "RETURN VALUE"
+These functions always succede.
