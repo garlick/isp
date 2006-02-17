@@ -1,0 +1,62 @@
+.\" Copyright (C) 2005 The Regents of the University of California.
+.\" Produced at Lawrence Livermore National Laboratory (cf, DISCLAIMER).
+.\" Written by Jim Garlick <garlick@llnl.gov>.
+.\"
+.\" This file is part of ISP, a toolkit for constructing pipeline applications.
+.\" For details, see <http://isp.sourceforge.net>.
+.\"
+.\" ISP is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2 of the License, or (at your option)
+.\" any later version.
+.\"
+.\" ISP is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+.\" FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+.\" details.
+.\"
+.\" You should have received a copy of the GNU General Public License along
+.\" with ISP; if not, write to the Free Software Foundation, Inc.,
+.\" 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+.TH ISPRUN 1  2005-12-08 "" "Industrial Strength Pipes"
+.SH NAME
+isprun \- run filters in parallel
+.SH SYNOPSIS
+.BI "isprun [-f fanout] [-s|-d] filter [args]"
+.SH DESCRIPTION
+\fBisprun\fR is a special ISP filter that starts multiple instances of
+\fIfilter\fR as coprocesses.  
+Each coprocess is given exactly one unit to work on.
+When a coprocess completes its work, its output is folded back into
+\fBisprun\fR's standard output.
+\fBisprun\fR will run a maximum of \fIfanout\fR coprocesses at any given time.  
+.SH OPTIONS
+.TP
+\fB-f\fR, \fB--fanout\fR
+Specify the maximum number of coprocesses that will run at any given time.
+A value of zero means unlimited.  Default: 4.
+.TP
+\fB-d\fR, \fB--direct\fR
+Start coprocesses directly as children of \fBisprun\fR.  
+This is the default mode.
+.TP
+\fB-s\fR, \fB--slurm\fR
+Start coprocesses using the SLURM resource manager by calling
+``\fBsrun --unbuffered --ntasks=1 filter [args]\fR'',
+which presumes the default (interactive) partition.
+\fBisprun\fR relies on SLURM to reliably forward standard input, 
+standard output, and standard error to remote processes.
+When insufficient resources are available, \fBsrun\fR blocks
+until they are, so while \fBisprun\fR may dutifully keep \fIfanout\fR 
+coprocesses running, some may actually be idle.
+.SH CAVEATS
+The order of units on standard input is not preserved on standard output.
+.SH "SEE ALSO"
+.BR ispbarrier (1)
+.BR ispcat (1)
+.BR ispexec (1)
+.BR isprename (1)
+.BR isprun (1)
+.BR ispstats (1)
+.BR ispunit (1)
+.BR ispunitsplit (1)
