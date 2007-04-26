@@ -1,0 +1,48 @@
+.\" Copyright (C) 2005 The Regents of the University of California.
+.\" Produced at Lawrence Livermore National Laboratory (cf, DISCLAIMER).
+.\" Written by Jim Garlick <garlick@llnl.gov>.
+.\"
+.\" This file is part of ISP, a toolkit for constructing pipeline applications.
+.\" For details, see <http://isp.sourceforge.net>.
+.\"
+.\" ISP is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2 of the License, or (at your option)
+.\" any later version.
+.\"
+.\" ISP is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+.\" FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+.\" details.
+.\"
+.\" You should have received a copy of the GNU General Public License along
+.\" with ISP; if not, write to the Free Software Foundation, Inc.,
+.\" 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+.TH ISP_FILE_ACCESS 3  2005-03-23 "" "Industrial Strength Pipes"
+.SH NAME
+isp_file_access \- get pathname associated with file reference
+.SH SYNOPSIS
+.nf
+.B #include <isp/isp.h>
+.sp
+.BI "int isp_file_access(isp_unit_t " u ", char *" key ", char **" pathp  ", int " flags ");"
+.fi
+.SH DESCRIPTION
+\fBisp_file_access()\fR retrieves the fully qualified path name \fIpathp\fR
+associated with the file reference defined by \fIkey\fR from unit \fIu\fR.
+.PP
+If the file will only be read, then \fBflags\fR should be set to ISP_RDONLY.
+.PP
+If the file will be written to, \fBflags\fR should be set to ISP_RDWR.
+Then if the file was sourced with the ISP_RDONLY flag, \fBisp_file_access()\fR
+will transparently source a read-write copy of 
+the file and sink the original, returning a reference to the copy in 
+\fIpathp\fR.
+.SH "RETURN VALUE"
+ISP_ESUCCESS (0)  is returned on success.  
+A nonzero error code which can be decoded with 
+\fBisp_errstr()\fR is returned on failure.
+.SH "SEE ALSO"
+.BR isp_file_source (3),
+.BR isp_file_rename (3),
+.BR isp_errstr (3)
