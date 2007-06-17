@@ -1,0 +1,53 @@
+.\" Copyright (C) 2005 The Regents of the University of California.
+.\" Produced at Lawrence Livermore National Laboratory (cf, DISCLAIMER).
+.\" Written by Jim Garlick <garlick@llnl.gov>.
+.\"
+.\" This file is part of ISP, a toolkit for constructing pipeline applications.
+.\" For details, see <http://isp.sourceforge.net>.
+.\"
+.\" ISP is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2 of the License, or (at your option)
+.\" any later version.
+.\"
+.\" ISP is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+.\" FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+.\" details.
+.\"
+.\" You should have received a copy of the GNU General Public License along
+.\" with ISP; if not, write to the Free Software Foundation, Inc.,
+.\" 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+.TH ISPEXEC 1  2005-12-06 "" "Industrial Strength Pipes"
+.SH NAME
+ispexec \- execute UNIX filter on a set of files
+.SH SYNOPSIS
+.BI "ispexec [-f filekey] -- command [args]"
+.SH DESCRIPTION
+\fBispexec\fR executes \fIcommand [args]\fR on each unit, reading standard 
+input from a file reference (default key: \fIfile\fR) 
+and writing standard output to a new file with a machine generated name.
+The new file replaces the old under the same key.
+.PP
+If the original file had the ISP_RDONLY flag, it is preserved.
+Otherwise, it is removed.
+.SH OPTIONS
+.TP
+\fB-f\fR, \fB--filekey\fR
+Change the file key to something other than the default.
+.SH EXAMPLES
+To sort the contents of all files in the current working directory in
+reverse numeric order, with the results in new files with the same 
+basename as the original, and \fI.out\fR appended:
+.nf
+    ispcat * | ispexec -- sort -rn | isprename
+.fi
+.SH "SEE ALSO"
+.BR ispbarrier (1)
+.BR ispcat (1)
+.\" .BR ispexec (1)
+.BR isprename (1)
+.BR isprun (1)
+.BR ispstats (1)
+.BR ispunit (1)
+.BR ispunitsplit (1)

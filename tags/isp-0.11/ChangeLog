@@ -1,0 +1,723 @@
+2007-06-17 Jim Garlick <garlick@llnl.gov>
+
+ * src/Makefile: Add -fPIC to CFLAGS.
+
+ * : tag isp-0.11
+
+2006-02-16 Jim Garlick <garlick@llnl.gov>
+
+ * isp.spec: use macros instead of hard coded directories.
+
+ * : tag isp-0.10
+
+2006-01-23 Jim Garlick <garlick@llnl.gov>
+
+ * */*: updated headers with UC release number.
+
+2005-12-13 Jim Garlick <garlick@llnl.gov>
+
+ * */*: added standard copyright headers.
+
+ * COPYING, DISCLAIMER: New.
+
+2005-12-08 Jim Garlick <garlick@llnl.gov>
+
+ * test/delay.c: Removed.
+
+ * utils/ispdelay.c: New.
+
+ * utils/{ispprogress.c,progress.[ch]}: New.
+
+ * utils/ispcount.c: New.
+
+ * man/*.1: Added man pages for utils.
+
+ * utils/*: Change references to 'tag' to 'key'.
+
+2005-12-07 Jim Garlick <garlick@llnl.gov>
+
+ * isp/util.[ch]: make data arg of util_read and util_write (void *).
+
+ * utils/unit.c: check string to number conversions for under/overflow.
+
+ * utils/*: fix termination of longopts arrays.
+
+ * utils/unit.c: added -n option.
+
+ * utils/isprun.c: added -f option.
+
+ * htdocs/*: New.
+
+2005-12-05 Jim Garlick <garlick@llnl.gov> 
+ * isp.spec, META: New.
+
+ * hello/{Makefile,hello.c}: New
+
+ * man/*: Updated.
+
+2005-12-05 Jim Garlick <garlick@llnl.gov>
+
+ * isp/ispunitsplit.c: fix improperly constructed isp_meta_source("split").
+
+ * doc/{Considerations,NOTES,Overview,TODO,Proposal}: removed.
+
+ * doc/: moved to man/.
+
+ * doc/{report.bib,report.tex,Makefile}: added new docs.
+
+ * etc/: removed
+
+ * utils/isprename.c: remove support for renaming multiple files.  Fix stab
+ code.
+
+ * isp/{isp.h, error.c}: added ISP_BIND error.
+
+ * isp/init.c: added code to check stab and display informative errors when
+ binding fails.
+
+2005-11-28 Jim Garlick <garlick@llnl.gov>
+
+ * isp/macros.h: gcc 3.2.3 doesn't like 'default' visibility for PUBLIC 
+ macro.  Make PUBLIC an empty def.
+
+ * utils/ispunit.c: add some missing newlines in fprintf error strings.
+
+ * isp/unit.c: renamed ISP_DOUBLE48 to ISP_DOUBLE and updated conversions.
+
+2005-05-10 Jim Garlick <garlick@llnl.gov>
+
+ * isp/xml_private.h: incorporated into xml.c after adding 
+ xml_el_parent_get/xml_el_parent_set accessors.
+
+ * utils/isprename.c: added symbol table.
+
+2005-05-11 Jim Garlick <garlick@llnl.gov>
+
+ * isp/*: API: move splitfactor argument from isp_unit_fini() to isp_init().
+ Move splitfactor from result element to filter element.
+
+ * isp/isp.c: store processed init element and provide accessors
+ isp_init_get(), isp_init_set().
+
+ * isp/init.c: added filter accessors isp_init_peek(), isp_init_find().
+
+ * isp/filter.c: added accessors isp_filter_fid_get() and 
+ isp_filter_splitfactor_get()
+
+ * utils/ispstats.c: update for new splitfactor interface.
+
+ * isp/init.c: added isp_init_read(), isp_init_write() functions.
+
+ * utils/isprun.c: restored to working order.
+
+ * test/delay.c: New.
+
+2005-05-10 Jim Garlick <garlick@llnl.gov>
+
+ * isp/*: replace isp_* global variables with accessor functions. 
+ Misc cleanup.
+
+2005-05-09 Jim Garlick <garlick@llnl.gov>
+
+ * isp/isp.c: split into error.c, handle.c, init.c, isp.c, unit.c.
+
+ * isp/macros.h: New.  
+
+ * isp/*: added PUBLIC and PRIVATE __attribute__ macros for DSO symbol 
+ management.
+
+ * isp/isp_private.c: added new definitions for files called between library
+ modules.
+
+ * isp/{isp.[ch],file.c,unit.c}: removed result and file processing from 
+ unit_read/unit_write functions and created unit_init/unit_fini.
+
+ * isp/{isp.h, util.h}: added extern "C" { } around headers.
+
+2005-05-06 Jim Garlick <garlick@llnl.gov>
+ 
+ * isp/isp.[ch]: API: added 'stab' argument to isp_init and
+ isp_stab_create/isp_stab_set/isp_stab_destroy functions.
+
+ * isp/isp.[ch]: API: changed to typed metadata scheme
+
+ * utils/*.[ch]: updated for API changes
+
+2005-05-05 Jim Garlick <garlick@llnl.gov>
+
+ * slurm/server.c: fixed cbuf_printf bug introduced in earlier cleanup
+ that was corrupting responses.
+
+ * slurm: split off to slurmrun project.
+
+ * expat_test: split off to expat_test project.
+
+ * : tag isp-0-9-prettygood
+
+2005-05-04 Jim Garlick <garlick@llnl.gov>
+
+ * utils/isppar.c: switch srun to unbuffered mode.  slurm's code
+ for line buffering can silently corrupt data.
+
+ * test/{test9.sh,test10,sh}: New.
+
+ * test/sinkxml.c: check integrity of everything received.
+
+ * test/isp.c: update file size at isp_unit_write() time, not earlier.
+ verify that size is correct even if we are not verifying md5.  Make size 
+ unsigned long bytes not int megabytes.
+
+ * isp/util.c: util_poll: restored infinite timeout for poll when tv is NULL.
+ Everything was spinning.
+
+ * test/{srcxml.c,sinkxml.c}: added test for excessive polling.
+
+ * slurm/isprun.c: renamed to ispsrun.c
+
+ * utils/isppar.c: renamed to isprun.c
+
+ * utils/ispsplit.c: renamed to ispunitsplit.c
+
+2005-05-03 Jim Garlick <garlick@llnl.gov>
+ 
+ * isp/isp.[ch]: added ISP_EELEMENT and ISP_EDOCUMENT errors.
+ Removed ISP_EINIT error.
+
+ * isp/isp.c: removed isp_proxy_flag.  Use handle->flags instead.
+
+ * utils/isppar.c: fixed to reflect updates in (private) API.
+
+2005-05-02 Jim Garlick <garlick@llnl.gov>
+
+ * isp/{xin.h,xout.h: inline documentation
+
+ * isp/{isp_private.h, isp.c}: changed isp_init_sink()/isp_init_source() to
+ isp_read_init()/isp_write_init().
+
+ * isp/isp.c: cleaned up isp_init().
+
+2005-04-29 Jim Garlick <garlick@llnl.gov>
+
+ * isp/xout.[ch]: makeover.  Switch from cbuf to internal element buffering
+ with configurable backlog.
+
+ * isp/cbuf.[ch]: removed.
+
+ * isp/xin.[ch]: added backlog limit.
+
+ * isp/isp.[ch]: updated for xout/xin changes.  Added return value to
+ isp_fini() and isp_handle_destroy() since they can return I/O errors when
+ the xout buffer is flushed on destruction.
+
+ * utils/*, test/*: updated for API changes.
+
+2005-04-28 Jim Garlick <garlick@llnl.gov>
+
+ * isp/xout.c: Remove internal XML document cache.  Do not free element 
+   in xout_write_el() (caller must now free).
+
+ * isp/isp.[ch]: API: split up _unit_write().  As a result of 
+ xout_write_el() change, caller must now free unit after isp_unit_write().
+
+ * utils/*: update for API cleanup and added isp_unit_destroy() calls.
+
+ * isp/xin.c: API: close fd when handle is destroyed.
+
+ * test/{srcxml.c,sinkxml.c,test7.sh,test8,sh}: New.
+
+2005-04-27 Jim Garlick <garlick@llnl.gov>
+
+ * isp/xout.c: API: close fd when handle is destroyed.
+
+ * isp/xout.[ch]: Delete xout_flushed().  Added xout_flush().
+
+ * isp/isp.c: update _unit_write() for new xout_flush() function.
+
+2005-04-26 Jim Garlick <garlick@llnl.gov>
+
+ * isp/isp.c: added sizemb and host attributes to file element.
+
+ * isp/isp.[ch]: added application error space and generic application errors.
+
+ * isp/isp.c: XML cleanup:  
+ - renamed "unit" element to "init" and "unit" elements, nixed seq attribute
+ - renamed "start" (inside "init) els to "filter"
+ - renamed "ufid" to "fid"
+
+ * isp/isp.c: added argv array, environ array, cwd, uid, gid, and protovers,
+ to init "filter" element
+
+ * isp/*.c, utils/*.c: hunt down places where printf-style functions are
+ misused (string in fmt argument) such that % directives in data are 
+ inadvertently expanded.
+
+2005-04-14 Jim Garlick <garlick@llnl.gov>
+
+ * utils/ispstats.c: fixed standard deviation calculation to use formula
+ for sample instead of population which is biased toward a normal distribution.
+
+ * utils/ispstats.c: fixed bug in the code that handles unit splitting
+ that was causing NAN standard deviations.
+
+2005-04-11 Jim Garlick <garlick@llnl.gov>
+
+ * isp/isp.[ch]: Add isp_result_get() to API.
+
+ * isp/isp.[ch]: Add isp_rwfile_check() to API.
+
+2005-04-01 Jim Garlick <garlick@llnl.gov>
+
+ * isp/isp.[ch], isp/isp_private.h: deprecated unit sequence numbers.
+   Removed isp_seq_set() and isp_seq_get().  Removed seq arg from
+   isp_unit_create().  Defined ISP_DATA_UNIT_SEQ.  The sequence number
+   is now not exposed in the API and is just a flag to distinguish data
+   units the start unit.
+
+ * utils/ispcat.c, utils/ispunit.c: updated to reflect seq deprecation.
+
+ * doc/isp_seq_set.1: removed.
+
+ * doc/isp_unit_copy.1: updated to reflect API changes.
+
+ * isp/config.h, isp/isp.c: removed WITH_TMPFILE_PRESERVATION.
+
+ * isp/xout.h: fixed a bug where I/O errors deferred to xout_handle_destroy()
+   could cause ISP's poll loop to spin.  Now return deferred errors, if any,
+   from xout_write_el().
+
+ * isp/isp.[ch]: added 'factor' attribute to result element to allow stats
+   to be properly scaled when units are split.  Added factor argument to
+   isp_unit_write.
+
+ * utils/ispcat.c, utils/isppar.c, utils/ispunit.c, utils/ispstats.c, 
+   doc/isp_unit_write.1: updated for 'factor' API change.
+
+ * utils/ispsplit.c: New.
+
+2005-04-01 Jim Garlick <garlick@llnl.gov>
+
+ * isp/isp.[ch]: moved ISP_DBGFAIL from isp_init() flag to environment
+   variable check.
+
+ * isp/isp.c: turned off MD5 corruption check by default.  Can be turned on
+   by setting environment variable ISP_MD5CHECK=1.
+
+ * doc/isp_init.3: update to reflect changes above.
+
+ * test/test[1-6].sh: turn on bash -x option.
+
+ * test/test6.sh: update to test for expected behavior with and 
+   without ISP_MD5CHECK set.
+   
+2005-03-31 Jim Garlick <garlick@llnl.gov>
+
+ * doc/*.3: escape some single quotes.
+
+ * isp/isp.c: fix a bug in isp_file_update() where code to copy a file
+   if read-only would never be executed.
+
+ * isp/isp.[ch]: API cleanup: change readonly flag in isp_file_source()
+   to flags and define ISP_RDWR and ISP_RDONLY flags.
+
+ * isp/isp.[ch]: API cleanup: isp_file_peek() and isp_file update()
+   combined into isp_file_access() with a flags argument.
+
+ * isp/isp.[ch]: API cleanup: isp_meta_scan() renamed to isp_meta_get().
+   isp_meta_update() renamed to isp_meta_set().  isp_meta_peek() renamed
+   to isp_meta_getraw().
+
+ * isp/isp.c: changed hard coded references to ufid -1 in "unsinked" files
+   and metadata to NO_UFID.
+
+ * utils/*: updated for API changes. 
+
+ * utils/isprename.c: factored some code, deprecated -v option.
+
+ * utils/ispcat.c: fix bug where regular files beginning with a dot and
+   containing no other dots would get empty string for basename value.
+
+ * example: moved over to lsst/proto project
+
+ * example2: removed
+
+ * doc/*: updated for API changes. 
+
+ * test/runtests.sh, test/test[1-6].sh: New.
+
+ * test/corruptfile.c: New (used by test6.sh)
+
+ * isp/isp.c: fixed memory leak in _verify_file_md5().
+
+2005-03-24 Jim Garlick <garlick@llnl.gov>
+
+ * doc/isp_file_peek.3, doc/isp_file_rename.3, doc/isp_file_source.3,
+   doc/isp_errstr.3: New.
+
+2005-03-23 Jim Garlick <garlick@llnl.gov>
+
+ * isp/isp.[ch]: Added isp_seq_get() and isp_seq_set().
+
+ * doc/isp_init.3, doc/isp_seq_set.3, doc/isp_unit_copy.3,
+   doc/isp_unit_map.3, doc/isp_unit_read.3: New.
+
+ * doc/Makefile: create sym links for multi-function man pages.
+
+ * Makefile: add doc to SUBDIRS
+
+ * isp/isp_private.h: broke out interfaces for isppar and ispstat.
+
+ * utils/*: changed include strategy.
+
+ * isp/util.[ch]: cleanup of redirection code
+
+2005-03-22 Jim Garlick <garlick@llnl.gov>
+
+ * Makefile: update SUBDIRS
+
+ * utils/isppar.c: remove --numcoprocs argument.
+
+ * utils/isppar.c: add --slurm, --direct, and --isprun arguments.
+
+2005-03-10 Jim Garlick <garlick@llnl.gov>
+
+ * isp/isp.[ch]: added a handle argument to isp_init.  Removed internal
+   parallel stuff and exposed some new function calls to "special" filters
+   that implement parallel methods.
+
+ * utils/isppar.c: unfinished filter for running parallel.
+
+ * : checking of not-quite-done changes for 0.10 release
+
+2005-02-04 Jim Garlick <garlick@llnl.gov>
+
+ * utils/ispunit.c: Added.
+
+ * utils/ispcat.c: If no files specified on command line, look for a list
+   on stdin (e.g. output of find(1)).
+
+2005-01-13 Jim Garlick <garlick@llnl.gov>
+
+ * : major revamp of error handing code.
+
+ * : tag isp-0-9-errfix
+
+2005-01-04 Jim Garlick <garlick@llnl.gov>
+
+ * isp/isp.c: isp_run() now returns wait's errno, WEXITSTATUS, WTERMSIG, 
+   or WSTOPSIG in errnum argument as appropriate.
+
+ * utils/ispexec.c: display errnum on isp_run() error.
+
+ * example/ispdophot.c, example/ispcleanim.c: display errnum on isp_run() 
+   error.
+ 
+ * isp/safemalloc.[ch]: Moved Malloc/Realloc/Free routines out of 
+   wrappers.[ch] and Vasprintf out of util.[ch].
+
+ * isp/safeio.[ch]: Moved Read/Write/Poll out of wrappers.[ch].
+
+ * isp/wrappers.[ch]: Removed.
+
+2004-12-28 Jim Garlick <garlick@llnl.gov>
+
+ * : tag isp-0-9
+
+2004-12-23 Jim Garlick <garlick@llnl.gov>
+
+ * utils/ispstats.c: reworked output formatting and added reporting on the
+   total pipeline.
+
+ * utils/ispnoop.c: removed.
+
+ * isp/isp.[ch]: added isp_runcmd().
+
+ * isp/util.[ch]: removed several unused functions.
+
+2004-12-22 Jim Garlick <garlick@llnl.gov>
+
+ * isp/isp.[ch]: add an integer result argument to isp_unit_write() and remove
+   isp_result_source() and isp_result_peek() from API.
+
+ * isp/isp.c: use integer milliseconds for utime, stime, and rtime in result.
+
+ * isp/isp.c: isp_unit_write() now ignores empty md5 strings for files 
+   sourced upstream.  Only make digests for files sourced locally.
+
+ * : tag isp-0-8-api-cleanup
+
+ * isp/isp.[ch]: added isp_stat_peek() and isp_stat_ufid().
+
+ * utils/ispstats.c: New.
+
+2004-12-21 Jim Garlick <garlick@llnl.gov>
+
+ * */*: include config.h in every .c file.
+
+ * isp/util.[c]: added Argstr().
+
+ * slurm/*.c: make compilation work if WITH_SLURM is 0.
+
+ * example/dophot_prep.c, example/ispdophot.c: ensure that isp_file_update()
+   is called in ispdophot.c to assure proper semantics (and avoid an MD5
+   failure).
+
+ * isp/isp.[ch]: added isp_strerror() and isp_ret_t definition.
+   Changed return value of several API functions to isp_ret_t.
+
+ * isp/isp.[ch]: added isp_result_source() and isp_result_peek().
+
+ * isp/isp.c: put map function result in unit with isp_result_source().
+
+ * isp/isp.c: do not execute map function if upstream result is
+   not ISP_RET_OK.
+
+ * utils/ispbarrier.c, utils/ispnoop.c: use NULL map function rather
+   than read/write.
+
+ * isp/isp.c: use list_push() to put everything in the unit so the XML
+   reads better.
+
+ * isp/isp.[ch], isp/config.h: convert ISP_PRESERVE_TMPFILES isp_init()
+   flag to configuration parameter WITH_TMPFILE_PRESERVATION.
+
+ * : tag isp-0-8-result-md5
+
+2004-12-20 Jim Garlick <garlick@llnl.gov>
+
+ * slurm/ispallocd.c: exit(0) quietly if SLURM_JOBID isn't set.
+   This relieves scripts of the burden of executing ispallocd conditionally.
+
+ * slurm/ispallocd.c, slurm/isprun: replace slurm_pid2jobid() calls with
+   getenv("SLURM_JOBID") since only the latter works when the job is run
+   via LCRM.  Under LCRM, there is a SLURM allocation, but TBS rather than 
+   SLURM starts the job.
+
+ * isp/par.h, isp/config.h, isp/par.c: move definition of PATH_SRUN and
+   PATH_ISPRUN to isp/config.h.  Use a relative path for PATH_ISPRUN for now
+   and let RunCoproc() find it when it calls execlp().
+
+ * example/*: renamed dophot to ispdophot, cleanim to ispcleanim.
+
+ * example/paths.h: removed and set PATH_CDOPHOT and PATH_CLEANIM to
+   relative paths.
+
+ * isp/par.c, isp/config.h: clean up logic for running WITH_SLURM and 
+   WITH_ISPRUN.
+
+ * isp/util.[ch]: added MkMD5Digest().
+
+ * isp/isp.c: if WITH_MD5_CHECK, generate and verify an MD5 attribute
+   for each file.  This should catch close-to-open cache coherency errors.
+
+2004-11-28 Jim Garlick <garlick@llnl.gov>
+
+ * : tag isp-0-8
+
+2004-11-27 Jim Garlick <garlick@llnl.gov>
+
+ * example/*: made tags configurable.  Log to files sourced in
+   the pipeline, not stderr.
+
+ * utils/*: made tags configurable.
+
+ * isp/*, slurm/*: presume one unit per parallel process and
+ restructure code accordingly.  Working on MCR now.
+
+2004-11-26 Jim Garlick <garlick@llnl.gov>
+
+ * slurm/*: working now.
+
+ * : tag isp-0-7
+
+2004-11-23 Jim Garlick <garlick@llnl.gov>
+
+ * slurm/*: added beginnings of slurm sub-allocation server.
+
+ * doc/Proposal: added text sent to Jim Brase for LSST proposal.
+
+2004-11-22 Jim Garlick <garlick@llnl.gov>
+
+ * : tag isp-0-6
+
+2004-11-20 Jim Garlick <garlick@llnl.gov>
+
+ * isp/par.c: remove 'procunits' parameter as this could cause 
+   deadlock when running with slurm.
+
+ * isp/par.c: Added SLURM_ONESHOT compilation option.
+
+ * isp/util.[ch]: Added Argvcat(), Argvdup(), Argvdupc().
+
+
+2004-11-17 Jim Garlick <garlick@llnl.gov>
+
+ * isp/par.c: implemented slurm support.
+
+2004-11-16 Jim Garlick <garlick@llnl.gov>
+
+ * isp.[ch], par.[ch]: re-execute filter in warmstart mode instead
+   of just forking.
+
+ * : tag isp-0-5-reexec
+
+2004-11-16 Jim Garlick <garlick@llnl.gov>
+
+ * isp.[ch], par.[ch]: restructured API to allow for
+   default sequential execution, parallel by calling isp_conf().
+
+ * par.[ch]: tightened up and tested.
+
+ * : tag isp-0-5
+
+2004-11-15 Jim Garlick <garlick@llnl.gov>
+
+ * example2/*: New.
+
+ * isp/util.[ch]: added MkCopyPipe()
+
+ * isp/isp.c: modified isp_file_update() to create a new file element 
+   when file is updated without copying, instead of merely changing 
+   the src attribute.
+
+ * isp/cbuf.[ch]: New.
+
+ * isp/wrappers.[ch]: New - for Poll() et al.
+
+ * isp/util.[ch]: update to remove duplication with wrappers.[ch].
+
+ * isp/xin.[ch], isp/xout.[ch]: make fd non-blocking on initialization.
+   Add pre/post poll functions for multiplexed I/O support.
+
+ * isp/par.[ch]: New.
+
+ * isp/isp.c: redid I/O functions to be non-blocking, multiplexed.
+
+ * isp/isp.c: added 'maxpar' argument to isp_unit_map(), and
+   hooked into par.[ch] for maxpar > 1.
+
+ * utils/ispexec.c: added -p N (parallel) option
+
+ * : tag isp-0-4
+
+2004-11-12 Jim Garlick <garlick@llnl.gov>
+
+ * xin.[ch], xout.[ch], xml.[ch], xml_private.h: splt functionality from 
+   isp_xml.[ch].  Renamed xin/xout functions to have xin_/xout_ prefix.  
+   Renamed ix_ prefixed functions to have xml_ prefix.
+
+ * isp_xml.[ch]: removed
+
+ * xout.[ch], xin.[ch]: modify interface to support multiple instances.
+
+ * util.[ch]: added MkCopy and RunCmd functions
+
+ * isp.[ch]: completely redid API!
+
+2004-11-12 Jim Garlick <garlick@llnl.gov>
+
+ * : tag isp-0-3
+
+2004-11-11 Jim Garlick <garlick@llnl.gov>
+
+ * isp/isp.[ch]: added isp_metadata_peekf.
+
+ * example/* : added object detection part of photpipe as example.
+
+2004-11-10 Jim Garlick <garlick@llnl.gov>
+
+ * isp/isp.[ch]: added isp_metadata_sourcef.
+
+2004-11-08 Jim Garlick <garlick@llnl.gov>
+
+ * isp/util.c: modify MkTmp and MkTmpCopy to produce fully 
+   qualified paths.
+
+ * isp/isp.c: modify unit_create to force paths to external
+   files to be fully qualified.
+
+ * isp.[ch]: implement "metafile" interface.
+
+ * isp.[ch]: implement ISP_PRESERVE_TMPFILES flag
+
+2004-11-05 Jim Garlick <garlick@llnl.gov>
+
+ * isp.[ch]: cleanup of isp_init (mostly cosmetic)
+
+ * isp.[ch]: implement "metadata" interface.
+
+ * isp.c: added prototypes for "metafile" interface.
+
+2004-11-05 Jim Garlick <garlick@llnl.gov>
+
+ * : tag isp-0-2
+
+2004-11-03 Jim Garlick <garlick@llnl.gov>
+
+ * utils/ispnoop.c: added simplest example for new API.
+
+ * utils/ispcat.c: allow -c to work on file arguments.
+
+ * isp/isp.[ch]: added isp_unit_filterfd().
+
+ * utils/ispexec.c: use isp_unit_filterfd() to avoid closing and
+   reopening tmp files.
+
+ * utils/ispbarrier.c: added
+
+ * isp/isp_xml.[ch]: Added ISP_XML_PREPARSE flag.
+
+2004-11-02 Jim Garlick <garlick@llnl.gov>
+
+ * isp/isp_obj.[ch]: Removed.  This layer is too restrictive.
+
+ * isp/isp.[ch]: Reworked completely.  Now we read and write "units"
+   which contain files and other things.  Interface to "users" is much simpler.
+
+ * isp/wrappers.[ch]: Removed.  Content goes to util.[ch].
+
+ * isp/util.[ch]: New.  Added Gethostname(), Getcwd(), Getlogin(),
+   Datestr(), MkTmp(), and MkTmpCopy().
+
+ * utils/ispcat.c: Move to new interface.
+
+ * utils/ispexec.c: Move to new interface.
+
+2004-11-01 Jim Garlick <garlick@llnl.gov>
+
+ * isp/*: renamed 'init' to 'start' and 'fini' to 'finish per Ghaleb's 
+   earlier comment.
+
+ * isp/*: renamed isp element to "document" for clarity.
+ 
+ * isp/isp_xml.c: changed parser wrapper to handle full document hierarchy
+   and read more than one character at a time.
+
+ * isp/*: removed in-stream log capability.
+
+ * isp/isp_xml.c: removed cdata support, changed type of expat callbacks
+   to match API.
+
+ * isp/xml_xml.c: added iterators and enqueue/dequeue interfaces for 
+   sub-element lists.
+
+2004-11-01 Jim Garlick <garlick@llnl.gov>
+
+ * isp/wrappers.[ch]: Vasprintf() should return string allocated by Malloc().
+
+ * utils/*.c: call Asprintf() not hsprintf().
+
+ * : tag isp-0-1
+
+2004-10-29 Jim Garlick <garlick@llnl.gov>
+
+ * isp/wrappers.[ch]: Added Fgets(), Asprintf(), Vasprintf().
+
+ * isp/hfgets.[ch]: removed - use Fgets()
+
+ * isp/hprintf.[ch]: removed - use Asprintf(), Vasprintf().
+
+2004-10-27 Jim Garlick <garlick@llnl.gov>
+
+ * : tagged after_long_think
+
+ * isp/*, utils/*: removed checkpoint/restart and file type/subtype.
