@@ -1,6 +1,6 @@
 2007-10-05 Jim Garlick <garlick@llnl.gov>
 
-	* isp.spec : Add tetex-latex to Buildrequires.
+	* isp.spec : Add tetex-latex and ghostscript to Buildrequires.
 
 	* ChangeLog : Reindent.
 
