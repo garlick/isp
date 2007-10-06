@@ -5,7 +5,7 @@ Summary: Industrial Strength Pipes
 Group: Application/System
 License:  GPL
 Url: http://sourceforge.net/projects/isp
-BuildRequires: expat-devel, openssl-devel, tetex-latex
+BuildRequires: expat-devel, openssl-devel, tetex-latex, dia
 Source0: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
 
