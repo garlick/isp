@@ -1,0 +1,45 @@
+.\" Copyright (C) 2005 The Regents of the University of California.
+.\" Produced at Lawrence Livermore National Laboratory (cf, DISCLAIMER).
+.\" Written by Jim Garlick <garlick@llnl.gov>.
+.\"
+.\" This file is part of ISP, a toolkit for constructing pipeline applications.
+.\" For details, see <http://isp.sourceforge.net>.
+.\"
+.\" ISP is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2 of the License, or (at your option)
+.\" any later version.
+.\"
+.\" ISP is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+.\" FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+.\" details.
+.\"
+.\" You should have received a copy of the GNU General Public License along
+.\" with ISP; if not, write to the Free Software Foundation, Inc.,
+.\" 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+.TH ISP_META_SOURCE 3  2005-12-05 "" "Industrial Strength Pipes"
+.SH NAME
+isp_meta_source, isp_meta_sink \- add/remove metadata from unit
+.SH SYNOPSIS
+.nf
+.B #include <isp/isp.h>
+.sp
+.BI "int isp_meta_source(isp_unit_t " u ", char *" key ", isp_type_t " type ", " ... ");"
+.sp
+.BI "int isp_meta_sink(isp_unit_t " u ", char *" key ");"
+.fi
+.SH DESCRIPTION
+\fBisp_meta_source()\fR adds a metadatum defined by \fIkey\fR, \fItype\fR, and 
+a value to unit \fIu\fR.  \fItype\fR should be ISP_STR (string), ISP_DOUBLE
+(64 bit IEEE floating point), ISP_UINT64 (64 bit unsigned integer), or
+ISP_INT64 (64 bit signed integer).  The value must match the type.
+.PP
+\fBisp_meta_sink()\fR removes a metadatum defined by \fIkey\fR from
+unit \fIu\fR.
+.SH "RETURN VALUE"
+ISP_ESUCCESS (0)  is returned on success.  
+A nonzero error code which can be decoded with 
+\fBisp_errstr()\fR is returned on failure.
+.SH "SEE ALSO"
+.BR isp_errstr (3)

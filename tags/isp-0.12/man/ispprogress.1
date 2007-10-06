@@ -1,0 +1,50 @@
+.\" Copyright (C) 2005 The Regents of the University of California.
+.\" Produced at Lawrence Livermore National Laboratory (cf, DISCLAIMER).
+.\" Written by Jim Garlick <garlick@llnl.gov>.
+.\"
+.\" This file is part of ISP, a toolkit for constructing pipeline applications.
+.\" For details, see <http://isp.sourceforge.net>.
+.\"
+.\" ISP is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2 of the License, or (at your option)
+.\" any later version.
+.\"
+.\" ISP is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+.\" FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+.\" details.
+.\"
+.\" You should have received a copy of the GNU General Public License along
+.\" with ISP; if not, write to the Free Software Foundation, Inc.,
+.\" 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+.TH ISPPROGRESS 1  2005-12-08 "" "Industrial Strength Pipes"
+.SH NAME
+ispprogress \- display progress bar
+.SH SYNOPSIS
+.BI "ispprogress -n numunits [-l string]"
+.SH DESCRIPTION
+\fBispprogress\fR counts the number of units passing from standard input to
+standard output and displays an ASCII progress bar on standard error showing
+percent complete relative to the number passed in on the command line.
+.SH OPTIONS
+.TP
+\fB-n\fR, \fB--numunits\fR
+Specify the expected number of units, used for computing the 
+percentage complete.
+.TP
+\fB-l\fR, \fB--label\fR
+Provide a label to display before the progress bar, otherwise ``progress''
+will be used.
+.SH CAVEATS
+The progress bar will get messed up if other filters send output to standard
+error.
+.SH "SEE ALSO"
+.BR ispbarrier (1)
+.BR ispcat (1)
+.BR ispexec (1)
+.BR isprename (1)
+.BR isprun (1)
+.BR ispstats (1)
+.BR ispunit (1)
+.BR ispunitsplit (1)
