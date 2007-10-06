@@ -1,16 +1,30 @@
-CFLAGS=		-Wall -g -DHAVE_CONFIG_H  -fPIC
-LIBOBJS=	list.o xml.o xin.o xout.o util.o isp.o error.o 
-LIBOBJS+=	init.o unit.o handle.o
-LIB=		libisp.a
-DSO=		libisp.so
+SVNURL        := https://isp.svn.sourceforge.net/svnroot/isp
+VERSION       := $(shell awk '/[Vv]ersion:/ {print $$2}' META)
+RELEASE       := $(shell awk '/[Rr]elease:/ {print $$2}' META)
+TRUNKURL      := $(SVNURL)/trunk
+TAGURL        := $(SVNURL)/tags/isp-$(VERSION)
 
-all: $(LIB) $(DSO)
 
-$(LIB): $(LIBOBJS)
-	ar rv $@ $(LIBOBJS)
+SUBDIRS		:= isp utils man doc htdocs
 
-$(DSO): $(LIBOBJS)
-	gcc -shared -o libisp.so $(LIBOBJS)
+all clean:
+	for subdir in $(SUBDIRS); do make -C $$subdir $@; done
 
-clean:
-	rm -f $(LIB) *.o *.so
+check-vars:
+	@echo "Release:  isp-$(VERSION)"
+	@echo "Trunk:    $(TRUNKURL)"
+	@echo "Tag:      $(TAGURL)"
+
+rpms-working:
+	make clean
+	@scripts/build --snapshot $(BUILDFLAGS) .
+
+rpms-trunk: check-vars
+	@scripts/build --snapshot $(BUILDFLAGS) $(TRUNKURL)
+
+rpms-release: check-vars
+	@scripts/build --nosnapshot $(BUILDFLAGS) $(TAGURL)
+
+tagrel:
+	svn copy $(TRUNKURL) $(TAGURL)
+
