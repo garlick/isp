@@ -10,6 +10,8 @@
 
 	* doc/Makefile : Update dia options.
 
+	* : tag isp-0.12
+
 2007-06-17 Jim Garlick <garlick@llnl.gov>
 
 	* src/Makefile: Add -fPIC to CFLAGS.
