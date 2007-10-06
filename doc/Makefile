@@ -21,5 +21,5 @@ report.dvi: report.tex report.bib isp.eps
 %.pdf: %.ps
 	ps2pdf $<
 
-%.eps: %.dia
-	dia --nosplash --export=$@ --export-to-format=eps-builtin $<
+#%.eps: %.dia
+#	dia --nosplash --export=$@ --filter=eps-builtin $<
