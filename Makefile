@@ -1,7 +1,7 @@
 SVNURL        := https://isp.svn.sourceforge.net/svnroot/isp
 VERSION       := $(shell awk '/[Vv]ersion:/ {print $$2}' META)
 RELEASE       := $(shell awk '/[Rr]elease:/ {print $$2}' META)
-TRUNKURL      := $(SVNURL)/trunk/isp
+TRUNKURL      := $(SVNURL)/trunk
 TAGURL        := $(SVNURL)/tags/isp-$(VERSION)
 
 
