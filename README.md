@@ -1,7 +1,5 @@
 ## Industrial Strength Pipes
 
-[!](htdocs/alaska.jpg)
-
 Industrial Strength Pipes (ISP) is a toolkit for constructing pipeline
 applications using the UNIX pipe and filter model.
 In UNIX, the "do one thing and do it well" philosophy as applied to text
@@ -36,7 +34,7 @@ ISP is licensed under the terms of the GNU General Public License.
 
 ### Hello World
 
-[hello.c](htdocs/hello.c)
+[hello.c](hello/hello.c)
 is a filter that reads two integers _x_ and
 _y_ out of each record, multplies them, and puts the result, _z_,
 back into the record.
@@ -61,4 +59,4 @@ hello[1]: isp_init: Pipeline binding error
 ```
 
 For more information on ISP, see the
-[documentation](htdocs/report.pdf)
+[documentation](doc/report.pdf)
