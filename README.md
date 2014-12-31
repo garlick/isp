@@ -1,7 +1,5 @@
 ## Industrial Strength Pipes
 
-[!](../blob/master/htdocs/alaska.jpg)
-
 Industrial Strength Pipes (ISP) is a toolkit for constructing pipeline
 applications using the UNIX pipe and filter model.
 In UNIX, the "do one thing and do it well" philosophy as applied to text
@@ -36,30 +34,29 @@ ISP is licensed under the terms of the GNU General Public License.
 
 ### Hello World
 
-The following program is a filter that reads two integers _x_ and
+[hello.c](../blob/master/htdocs/hello.c)
+is a filter that reads two integers _x_ and
 _y_ out of each record, multplies them, and puts the result, _z_,
 back into the record.
 
-```
-[hello.c](../blob/master/htdocs/hello.c)
-```
-
-Presuming ISP is installed in `/usr/include` and `/usr/lib`, the filter
-is compiled with the command:
+Presuming ISP is installed where the compiler can find its header
+and library, the filter is compiled with the command:
 ```
 cc -o hello hello.c -lisp -lexpat -lssl
 ```
+
 The filter can be tested using `ispunit`, which generates one
 record with content defined on its command line:
 ```
 ispunit -i x=4 -i y=2 | ./hello | more
 ```
-ISP's dynamic binding is demonstrated by omitting _x_ from
-ispunit:
+
+ISP's dynamic binding is demonstrated by omitting _x_ from ispunit:
 ```
 $ ispunit -i y=2 | ./hello >/dev/null
 hello[1]: requires key "x" (int64) not found upstream
 hello[1]: isp_init: Pipeline binding error
+```
 
 For more information on ISP, see the
 [documentation](../blob/master/htdocs/report.pdf)
