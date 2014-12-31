@@ -34,7 +34,7 @@ ISP is licensed under the terms of the GNU General Public License.
 
 ### Hello World
 
-[hello.c](../blob/master/htdocs/hello.c)
+[hello.c](master/htdocs/hello.c)
 is a filter that reads two integers _x_ and
 _y_ out of each record, multplies them, and puts the result, _z_,
 back into the record.
@@ -59,4 +59,4 @@ hello[1]: isp_init: Pipeline binding error
 ```
 
 For more information on ISP, see the
-[documentation](../blob/master/htdocs/report.pdf)
+[documentation](master/htdocs/report.pdf)
